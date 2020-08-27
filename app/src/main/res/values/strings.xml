@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">StateChangeKotlin</string>
+    <string name="save_name">Save Name</string>
+    <string name="saved_named_label">Saved Name: %s</string>
+</resources>
