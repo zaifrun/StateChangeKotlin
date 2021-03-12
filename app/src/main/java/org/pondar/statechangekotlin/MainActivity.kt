@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val KEY = "savedName"
-    private val TAG = "StateChange"
+    private val TAG = "stateChange"
     private var name = ""
 
 
