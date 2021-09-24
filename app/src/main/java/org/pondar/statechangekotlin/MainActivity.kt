@@ -3,7 +3,7 @@ package org.pondar.statechangekotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
+import org.pondar.statechangekotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,11 +11,17 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "stateChange"
     private var name = ""
 
+    private lateinit var binding : ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        nameView.text = resources.getString(R.string.saved_named_label,"")
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        binding.nameView.text = resources.getString(R.string.saved_named_label,"")
 
 
         Log.d(TAG, "onCreate")
@@ -26,11 +32,11 @@ class MainActivity : AppCompatActivity() {
             name = saved
 
         //initialize our text field
-        nameView.text = resources.getString(R.string.saved_named_label,name)
+        binding.nameView.text = resources.getString(R.string.saved_named_label,name)
         //add a click listener to our save button
-        saveButton.setOnClickListener{
-            name = editNameView.text.toString()
-            nameView.text = resources.getString(R.string.saved_named_label,name)
+        binding.saveButton.setOnClickListener{
+            name = binding.editNameView.text.toString()
+            binding.nameView.text = resources.getString(R.string.saved_named_label,name)
 
         }
     }
@@ -71,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         Log.d(TAG, "onSaveInstanceState")
         /* Here we put code now to save the state */
-        //outState.putString(KEY, name)
+        outState.putString(KEY, name)
 
     }
 }
